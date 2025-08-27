@@ -1,6 +1,6 @@
 #include "timer.h"
 
-void timer_wait(int seconds) {
+void timer_wait(uint32_t seconds) {
     
     volatile uint32_t* address = 
         (volatile uint32_t*)(TIMER_BASE + TIMER_COUNTER_LOWER);

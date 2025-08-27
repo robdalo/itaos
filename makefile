@@ -11,6 +11,9 @@ boot.o: src/boot.s
 kernel.o: src/kernel.c
 	arm-none-eabi-gcc $(GCCFLAGS) -c $< -o $@
 
+framebuffer.o: src/framebuffer.c
+	arm-none-eabi-gcc $(GCCFLAGS) -c $< -o $@
+
 gpio.o: src/gpio.c
 	arm-none-eabi-gcc $(GCCFLAGS) -c $< -o $@
 
@@ -23,8 +26,8 @@ mailbox.o: src/mailbox.c
 timer.o: src/timer.c
 	arm-none-eabi-gcc $(GCCFLAGS) -c $< -o $@	
 
-kernel.img: boot.o kernel.o gpio.o led.o mailbox.o timer.o
-	arm-none-eabi-ld -nostdlib boot.o kernel.o gpio.o led.o mailbox.o timer.o -T kernel.ld -o kernel.elf
+kernel.img: boot.o kernel.o framebuffer.o gpio.o led.o mailbox.o timer.o
+	arm-none-eabi-ld -nostdlib boot.o kernel.o framebuffer.o gpio.o led.o mailbox.o timer.o -T kernel.ld -o kernel.elf
 	arm-none-eabi-objcopy -O binary kernel.elf kernel.img
 
 clean:

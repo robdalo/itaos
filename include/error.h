@@ -1,0 +1,1 @@
+#define ERROR_FRAMEBUFFER_INIT 2
