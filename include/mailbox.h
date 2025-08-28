@@ -3,10 +3,9 @@
 
 #include <stdint.h>
 
-#include "framebuffer.h"
 #include "led.h"
 
-#define MAILBOX_BASE 0x2000b880
+#define MAILBOX_BASE 0xfe00b880
 #define MAILBOX_STATUS 0x18
 #define MAILBOX_WRITE 0x20
 

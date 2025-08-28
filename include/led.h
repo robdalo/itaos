@@ -8,7 +8,7 @@
 
 #define LED_FLASH_BREAK 5
 #define LED_FLASH_DELAY 1
-#define LED_GPIO_PIN_NUMBER 16
+#define LED_GPIO_PIN_NUMBER 42
 #define LED_GPIO_PIN_FUNCTION 1
 
 void led_debug(void);
