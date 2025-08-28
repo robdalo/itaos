@@ -1,8 +1,8 @@
 #include "kernel.h"
 
-void kernel_main(void) {
+void kernel_main() {
     
-    framebuffer_test();
+    screensaver_test();
 
     while (1);
 }

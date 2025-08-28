@@ -4,18 +4,8 @@ volatile uint32_t __attribute__((aligned(16))) framebuffer_request[32] = { 1 };
 
 struct framebuffer_container framebuffer_container_current = { .width = 1 };
 
-void framebuffer_clear(uint16_t colour) {
-
-    struct framebuffer_container container = framebuffer_container_current;
-
-    volatile uint16_t* framebuffer = container.framebuffer;
-
-    for (uint32_t x = 0; x < container.width; x++) {
-        for (uint32_t y = 0; y < container.height; y++) {
-            uint32_t offset = y * container.pitch_pixels + x;
-            framebuffer[offset] = colour;
-        }
-    }
+struct framebuffer_container* framebuffer_get() {
+    return &framebuffer_container_current;
 }
 
 void framebuffer_get_request(uint32_t width, uint32_t height, uint32_t bit_depth) {
@@ -99,8 +89,6 @@ void framebuffer_init(
 void framebuffer_test() {
 
     framebuffer_init(1920, 1080, 16);
-
-    framebuffer_clear(0xffff);
 
     led_debug();
 }

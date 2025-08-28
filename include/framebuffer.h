@@ -26,7 +26,7 @@ struct framebuffer_container {
     uint16_t* framebuffer;
 };
 
-void framebuffer_clear(uint16_t colour);
+struct framebuffer_container* framebuffer_get();
 void framebuffer_get_request(uint32_t width, uint32_t height, uint32_t bit_depth);
 void framebuffer_init(uint32_t width, uint32_t height, uint32_t bit_depth);
 void framebuffer_test();

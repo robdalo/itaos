@@ -11,8 +11,8 @@
 #define LED_GPIO_PIN_NUMBER 42
 #define LED_GPIO_PIN_FUNCTION 1
 
-void led_debug(void);
+void led_debug();
 void led_error(uint32_t error_code);
-void led_flash(void);
+void led_flash();
 
 #endif
