@@ -18,7 +18,7 @@ void led_error(uint32_t error_code) {
 
     while (1) {
 
-        for (int i=0; i<error_code; i++) {
+        for (uint32_t i=0; i<error_code; i++) {
             gpio_set(LED_GPIO_PIN_NUMBER);
             timer_wait(LED_FLASH_DELAY);
             gpio_clear(LED_GPIO_PIN_NUMBER);

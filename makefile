@@ -1,7 +1,7 @@
 INSTALL_DEVICE = /dev/sda1
 INSTALL_PATH = /media/robd/bootfs
 
-GCC_FLAGS = -Wall -O2 -ffreestanding -nostartfiles -Iinclude
+GCC_FLAGS = -Wall -O2 -ffreestanding -nostdlib -nostartfiles -Iinclude
 
 all: clean kernel.img
 
@@ -12,6 +12,9 @@ kernel.o: src/kernel.c
 	arm-none-eabi-gcc $(GCC_FLAGS) -c $< -o $@
 
 drawing.o: src/drawing.c
+	arm-none-eabi-gcc $(GCC_FLAGS) -c $< -o $@
+
+font.o: src/font.c
 	arm-none-eabi-gcc $(GCC_FLAGS) -c $< -o $@
 
 framebuffer.o: src/framebuffer.c
@@ -29,11 +32,14 @@ mailbox.o: src/mailbox.c
 screensaver.o: src/screensaver.c
 	arm-none-eabi-gcc $(GCC_FLAGS) -c $< -o $@	
 
+terminal.o: src/terminal.c
+	arm-none-eabi-gcc $(GCC_FLAGS) -c $< -o $@	
+
 timer.o: src/timer.c
 	arm-none-eabi-gcc $(GCC_FLAGS) -c $< -o $@	
 
-kernel.img: boot.o kernel.o drawing.o framebuffer.o gpio.o led.o mailbox.o screensaver.o timer.o
-	arm-none-eabi-ld boot.o kernel.o drawing.o framebuffer.o gpio.o led.o mailbox.o screensaver.o timer.o -T kernel.ld -o kernel.elf
+kernel.img: boot.o kernel.o drawing.o font.o framebuffer.o gpio.o led.o mailbox.o screensaver.o terminal.o timer.o
+	arm-none-eabi-ld boot.o kernel.o drawing.o font.o framebuffer.o gpio.o led.o mailbox.o screensaver.o terminal.o timer.o -T kernel.ld -o kernel.elf
 	arm-none-eabi-objcopy -O binary kernel.elf boot/kernel.img
 
 clean:

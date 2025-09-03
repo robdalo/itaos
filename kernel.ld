@@ -1,10 +1,12 @@
-ENTRY(_start)
+MEMORY
+{
+   ram : ORIGIN = 0x8000, LENGTH = 0x2000
+}
 
-SECTIONS {
-    .text.boot 0x80000 : { *(.text.boot) }
-    .text : { *(.text*) }
-    .data : { *(.data*) }
-    .rodata : { *(.rodata*) },
-
-    /DISCARD/ : { *(*) }
+SECTIONS
+{
+   .text.boot : { *(.text.boot*) } > ram
+   .text : { *(.text*) } > ram
+   .rodata : { *(.rodata*) } > ram
+   .data : { *(.data*) } > ram
 }

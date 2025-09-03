@@ -51,14 +51,10 @@ void framebuffer_get_request(uint32_t width, uint32_t height, uint32_t bit_depth
     framebuffer_request[25] = FRAMEBUFFER_REQUEST_END_TAG;
 }
 
-void framebuffer_init(
-    uint32_t width, 
-    uint32_t height, 
-    uint32_t bit_depth) {
-
+void framebuffer_init() {
     // get the framebuffer request
 
-    framebuffer_get_request(width, height, bit_depth);
+    framebuffer_get_request(FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT, FRAMEBUFFER_BIT_DEPTH);
 
     // gpu uses a different memory addressing system so we have
     // to convert our address to the equivilent address for the gpu
@@ -88,7 +84,7 @@ void framebuffer_init(
 
 void framebuffer_test() {
 
-    framebuffer_init(1920, 1080, 16);
+    framebuffer_init();
 
     led_debug();
 }

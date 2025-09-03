@@ -12,5 +12,6 @@
 #define COLOUR_PEACH 0xfdb8
 #define COLOUR_MINT 0x87f0
 #define COLOUR_LAVENDER 0xb81f
+#define COLOUR_WHITE 0xffff
 
 #endif

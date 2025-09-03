@@ -7,6 +7,10 @@
 #include "led.h"
 #include "mailbox.h"
 
+#define FRAMEBUFFER_WIDTH 1920
+#define FRAMEBUFFER_HEIGHT 1080
+#define FRAMEBUFFER_BIT_DEPTH 16
+
 #define FRAMEBUFFER_GPU_OFFSET 0xc0000000
 #define FRAMEBUFFER_MAILBOX_CHANNEL 8
 
@@ -28,7 +32,7 @@ struct framebuffer_container {
 
 struct framebuffer_container* framebuffer_get();
 void framebuffer_get_request(uint32_t width, uint32_t height, uint32_t bit_depth);
-void framebuffer_init(uint32_t width, uint32_t height, uint32_t bit_depth);
+void framebuffer_init();
 void framebuffer_test();
 
 #endif

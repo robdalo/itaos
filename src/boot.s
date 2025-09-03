@@ -9,7 +9,7 @@ _start:
 
 main:
     // set stack pointer
-    ldr sp, =0x80000
+    ldr sp, =0x8000
 
     // pass control to kernel
     bl kernel_main

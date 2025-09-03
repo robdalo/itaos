@@ -2,7 +2,8 @@
 
 void screensaver_changing_background(struct framebuffer_container* framebuffer_container) {
 
-    uint32_t colours[10] = {
+    uint32_t colours[11] = {
+        COLOUR_BLACK,
         COLOUR_BLUE,
         COLOUR_GREEN,
         COLOUR_PINK,
@@ -21,10 +22,9 @@ void screensaver_changing_background(struct framebuffer_container* framebuffer_c
         
         drawing_clear(colours[colour++], framebuffer_container);
         
-        if (colour > 9)
-            colour = 0;
+        colour = colour > 10 ? 0 : colour;
 
-        timer_wait_ms(500);
+        timer_wait_ms(400);
     }    
 }
 
@@ -43,14 +43,16 @@ void screensaver_moving_square(struct framebuffer_container* framebuffer_contain
         COLOUR_LAVENDER
     };
 
-    int x = 0;
-    int y = 0;
-    int width = 200;
-    int colour = 0;
+    uint32_t x_margin = 10;
+    uint32_t y_margin = 20;
+    uint32_t x = x_margin;
+    uint32_t y = y_margin;
+    uint32_t width = 210;
+    uint32_t colour = 0;
 
     while(1) {
 
-        timer_wait_ms(100);
+        timer_wait_ms(400);
 
         drawing_clear(COLOUR_BLACK, framebuffer_container);
         drawing_draw_square(x, y, width, colours[colour], framebuffer_container);
@@ -59,11 +61,11 @@ void screensaver_moving_square(struct framebuffer_container* framebuffer_contain
 
         if (x + width > framebuffer_container->width) {
             
-            x = 0;
+            x = x_margin;
             y += 200;
 
             if (y + width > framebuffer_container->height)
-                y = 0;
+                y = y_margin;
         }
 
         colour++;
@@ -75,7 +77,7 @@ void screensaver_moving_square(struct framebuffer_container* framebuffer_contain
 
 void screensaver_test() {
 
-    framebuffer_init(1920, 1080, 16);
+    framebuffer_init();
 
     struct framebuffer_container* framebuffer_container = framebuffer_get();
 

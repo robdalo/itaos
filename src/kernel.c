@@ -2,7 +2,7 @@
 
 void kernel_main() {
     
-    screensaver_test();
+    terminal_test();
 
     while (1);
 }

@@ -1,6 +1,6 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
-#include "screensaver.h"
+#include "terminal.h"
 
 #endif

@@ -44,7 +44,7 @@ void drawing_set_pixel(
 
 void drawing_test() {
     
-    framebuffer_init(1920, 1080, 16);
+    framebuffer_init();
 
     struct framebuffer_container* framebuffer_container = framebuffer_get();
 
