@@ -1,0 +1,16 @@
+#include "colour.h"
+
+int colour_palette[] = {
+    COLOUR_BLACK,
+    COLOUR_BLUE,
+    COLOUR_GREEN,
+    COLOUR_PINK,
+    COLOUR_YELLOW,
+    COLOUR_ORANGE,
+    COLOUR_PURPLE,
+    COLOUR_AQUA,
+    COLOUR_PEACH,
+    COLOUR_MINT,
+    COLOUR_LAVENDER,
+    COLOUR_WHITE
+};

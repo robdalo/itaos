@@ -2,7 +2,7 @@
 
 void kernel_main() {
     
-    terminal_test();
+    demo_test();
 
     while (1);
 }

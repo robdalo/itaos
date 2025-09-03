@@ -14,4 +14,6 @@
 #define COLOUR_LAVENDER 0xb81f
 #define COLOUR_WHITE 0xffff
 
+extern int colour_palette[];
+
 #endif

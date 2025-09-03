@@ -3,6 +3,41 @@
 uint32_t terminal_row_current;
 uint32_t terminal_column_current;
 
+void terminal_ascii_char_test(uint32_t delay, struct framebuffer_container* framebuffer_container) {
+    
+    for (uint32_t i=0; i<128; i++) {
+        
+        terminal_print_char(i, COLOUR_ORANGE, framebuffer_container);
+        
+        if (delay > 0)
+            timer_wait_ms(delay);
+    }
+}
+
+void terminal_clear_char(struct framebuffer_container* framebuffer_container) {
+
+    for (uint32_t y=0; y<TERMINAL_FONT_HEIGHT; y++) {
+        for (uint32_t x=0; x<TERMINAL_FONT_WIDTH; x++) {
+            terminal_set_pixel(x, y, COLOUR_BLACK, framebuffer_container);
+        }
+    }
+
+    terminal_next_column();
+}
+
+void terminal_clear_row(struct framebuffer_container* framebuffer_container) {
+    
+    uint32_t max = terminal_column_current;
+
+    terminal_column_current = 0;
+
+    for (uint32_t i=0; i<max; i++) {
+        terminal_clear_char(framebuffer_container);
+    }
+
+    terminal_column_current = 0;
+}
+
 void terminal_init() {
     terminal_row_current = 0;
     terminal_column_current = 0;
@@ -47,6 +82,18 @@ void terminal_print_string(
     }
 }
 
+void terminal_print_string_delay(
+    char* value,
+    uint16_t colour,
+    uint32_t delay,
+    struct framebuffer_container* framebuffer_container) {
+
+    while (*value != '\0') {
+        terminal_print_char(*value++, colour, framebuffer_container);
+        timer_wait_ms(delay);
+    }
+}
+
 void terminal_set_pixel(
     uint32_t x, 
     uint32_t y, 
@@ -71,10 +118,10 @@ void terminal_test() {
     terminal_next_row();
     terminal_next_row();
     terminal_print_string("Attempting ASCII character test...", COLOUR_WHITE, framebuffer_container);
-
-    for (uint32_t i=0; i<128; i++)
-        terminal_print_char(i, COLOUR_WHITE, framebuffer_container);
-
+    terminal_next_row();
+    terminal_next_row();
+    terminal_ascii_char_test(0, framebuffer_container);
+    terminal_next_row();
     terminal_next_row();
     terminal_print_string("Completed ASCII character test...", COLOUR_WHITE, framebuffer_container);
 }

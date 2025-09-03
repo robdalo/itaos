@@ -12,10 +12,10 @@ void drawing_clear(uint16_t colour, struct framebuffer_container* framebuffer_co
     }
 }
 
-void drawing_draw_square(uint32_t x, uint32_t y, uint32_t width, uint32_t colour, struct framebuffer_container* framebuffer_container) {
+void drawing_draw_square(uint32_t x, uint32_t y, uint32_t size, uint32_t colour, struct framebuffer_container* framebuffer_container) {
 
-    uint32_t x_max = x + width;
-    uint32_t y_max = y + width;
+    uint32_t x_max = x + size;
+    uint32_t y_max = y + size;
     uint32_t y_start = y;
 
     volatile uint16_t* framebuffer = framebuffer_container->framebuffer;

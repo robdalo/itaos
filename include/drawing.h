@@ -7,7 +7,7 @@
 #include "framebuffer.h"
 
 void drawing_clear(uint16_t colour, struct framebuffer_container* framebuffer_container);
-void drawing_draw_square(uint32_t x, uint32_t y, uint32_t width, uint32_t colour, struct framebuffer_container* framebuffer_container);
+void drawing_draw_square(uint32_t x, uint32_t y, uint32_t size, uint32_t colour, struct framebuffer_container* framebuffer_container);
 void drawing_set_pixel(uint32_t x, uint32_t y, uint32_t colour, struct framebuffer_container* framebuffer_container);
 void drawing_test();
 

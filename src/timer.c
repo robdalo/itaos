@@ -8,6 +8,10 @@ uint32_t timer_get_counter_lower() {
     return *address;
 }
 
+uint32_t timer_get_counter_lower_seconds() {
+    return timer_get_counter_lower() / 1000 / 1000;
+}
+
 void timer_wait(uint32_t seconds) {
     
     timer_wait_ms(seconds * 1000);
